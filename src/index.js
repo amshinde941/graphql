@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+//set additional urql exchanges - current
+import { Provider, Client, defaultExchanges} from 'urql';
+
+const client = new Client({
+  url: 'http://localhost:4000',
+  exchanges: defaultExchanges
+})
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider value={client}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
