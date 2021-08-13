@@ -25,10 +25,10 @@ const POST_MUTATION = gql`
 const CreateLink = props => {
   const [description, setDescription] = React.useState('')
   const [url, setUrl] = React.useState('')
-  
+  const[state, executeMutation ] = useMutation(POST_MUTATION);
   const submit = React.useCallback(() => {
-    // ... you'll implement this 🔜
-  }, [])
+    executeMutation({url, description})
+  }, [executeMutation, url, description])
 
   return (
     <div>
@@ -48,11 +48,13 @@ const CreateLink = props => {
           placeholder="The URL for the link"
         />
       </div>
-      <button onClick={submit}>
+      <button 
+        disabled={state.fetching}
+        onClick={submit}>
         Submit
       </button>
     </div>
   )
 }
 
-export default CreateLink
+export default CreateLink;
