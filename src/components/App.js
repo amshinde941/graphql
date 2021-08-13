@@ -1,6 +1,9 @@
 import React from 'react'
-import CreateLink from './CreateLink'
+import CreateLink from './CreateLink';
 
-const App = () => <CreateLink />
+const App = () =>{
+    <CreateLink />
+    
+} 
 
 export default App;

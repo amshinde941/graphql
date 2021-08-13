@@ -1,6 +1,7 @@
 import React from 'react'
 import gql from 'graphql-tag';
 import { useMutation } from 'urql';
+import Header from './Header';
 
 const POST_MUTATION = gql`
   mutation PostMutation($description: String!, $url: String!) {
@@ -32,6 +33,7 @@ const CreateLink = props => {
 
   return (
     <div>
+      <Header/>
       <div className="flex flex-column mt3">
         <input
           className="mb2"
