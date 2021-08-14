@@ -6,10 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { Provider, Client, dedupExchange, fetchExchange } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 import { BrowserRouter } from 'react-router-dom';
+import { getToken } from './token';
+
 const cache = cacheExchange({})
 
 const client = new Client({
   url: 'http://localhost:4000',
+  fetchOptions: () => {
+    const token = getToken()
+    return {
+      headers: {authorization: token? `Bearer ${token}`:''}
+    }
+  },
   exchanges: [dedupExchange, cache, fetchExchange]
 })
 
